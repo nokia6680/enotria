@@ -1,0 +1,20 @@
+-var navLinks = [{name: 'О школе', link: '#'}, {name: 'Преподаватели', link: '#'}, {name: 'Студенты', link: '#'}, {name: 'Расписания', link: '#'}, {name: 'Программы', link: '#'}, {name: 'Галерея', link: '#'}, {name: 'Региональная политика', link: '#'}]
+
+header.header
+    .header__upper
+        .header__city
+            select.select
+                option(value="msk") Москва
+                option(value="spb") Санкт-Петербург
+        .header__controls
+            button(type="button").header__btn Оформить заявку
+            button(type="button").header__login.js-cabinet-opener.logged
+            
+        .header__popup
+            button(type="button").header__popup-closer
+            .header__popup-info
+                img(src="static/images/content/photo.png" width="" height="" alt="").header__popup-img
+                b.header__popup-name Константин Константинов Констатнитонович
+            .header__popup-nav
+                a(href="enotria-cabinet.html" target="_self").header__popup-link Личный кабинет
+                a(href="" target="_self").header__popup-link.logout Выйти

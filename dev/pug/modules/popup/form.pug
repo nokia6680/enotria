@@ -1,0 +1,64 @@
+.popup-menu
+    .popup-menu__wrapper
+        button(type="button").popup-menu__closer
+        .menu
+            .menu__head
+                button(type="button" data-tab-name="js-login-form").menu__btn.js-login-btn.active Авторизация
+                button(type="button" data-tab-name="js-reg-form").menu__btn.js-reg-btn Регистрация
+            .menu__body
+                form(method="post" action="/" name="authorization").menu__form.form.js-login-form.active
+                    ul.form__list
+                        li.form__item
+                            label(for="email").form__label E-mail или телефон
+                            input(type="email" name="email" id="email" onkeydown="validationMailEnter()").form__input
+                            span.form__error.form__error--mail
+                            span.form__sign
+                        li.form__item
+                            label(for="password").form__label Пароль 
+                            input(type="password" name="password" id="password" onkeydown="validationPassEnter()").form__input 
+                            span.form__error.form__error--password Пароль неверный
+                            span.form__sign
+                    a(href="restore.html" target="_self").form__restore Я забыл пароль
+                    button(type="submit").form__submit.js-enter-btn Войти
+                form(method="post" action="/" name="registration").menu__form.form.js-reg-form
+                    ul.form__list
+                        li.form__item
+                            label(for="name").form__label Имя*
+                            input(type="text" id="name" name="name" onkeydown="validationName()").form__input.form__input--text
+                            span.form__error.form__error--name
+                            span.form__sign
+                        li.form__item
+                            label(for="surname").form__label Фамилия*
+                            input(type="text" id="surname" name="surname" onkeydown="validationSurname()").form__input.form__input--text
+                            span.form__error.form__error--surname
+                            span.form__sign
+                        li.form__item
+                            label(for="patronymic").form__label Отчество
+                            input(type="text" id="patronymic" name="patronymic" onkeydown="validationPatr()").form__input.form__input--text
+                            span.form__error.form__error--patronymic
+                            span.form__sign
+                        li.form__item
+                            label(for="email-reg").form__label E-mail*
+                            input(type="email" id="email-reg" name="email-reg" onkeydown="validationMail()").form__input
+                            span.form__error.form__error--mreg
+                            span.form__sign
+                        li.form__item
+                            label(for="tel-reg").form__label Телефон*
+                            input(type="tel" id="tel-reg" name="tel-reg" onkeydown="validationTel()").form__input.mask-phone
+                            span.form__error.form__error--tel
+                            span.form__sign
+                                
+                        li.form__item
+                            label(for="password-reg").form__label Пароль*
+                            input(type="password" id="password-reg" name="password-reg" required).form__input
+                            span.form__error.form__error--password
+                            span.form__sign
+                        li.form__item
+                            label(for="password-reg-repeat").form__label Повторите пароль*
+                            input(type="password" id="password-reg-repeat" name="password-reg-repeat" required).form__input
+                            span.form__error.form__error--password
+                            span.form__sign
+                                
+                    span.form__agree Нажимая на кнопку я принимаю 
+                        a(href="#" target="_blank") условия&nbsp;обратки&nbsp;персональных&nbsp;данных
+                    button(type="submit").form__submit.js-send-btn Зарегистрироваться

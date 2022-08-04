@@ -1,0 +1,527 @@
+.cabinet {
+    width: 100%;
+
+    @include flex-setting(column, flex-start, center);
+
+    padding: 0 1.5rem;
+
+    &__intro {
+        width: 100%;
+
+        @include flex-setting(column, flex-start, center);
+
+        position: relative;
+
+        margin-bottom: toRem(20);
+
+        &::before {
+            position: absolute;
+            content: '';
+
+            width: calc(100% + 32px);
+            height: toRem(96);
+
+            background-color: $eno-red;
+
+            top: toRem(16);
+            left: 50%;
+            transform: translateX(-50%);
+
+            z-index: -1;
+        }
+    }
+
+    &__frame {
+        width: 100%;
+        @include flex-setting(column, center, center);
+        max-height: 8rem;
+        overflow: hidden;
+
+        &-image {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__bio {
+        position: absolute;
+        top: toRem(13);
+        left: toRem(24);
+        bottom: toRem(9);
+
+        @include flex-setting(column, flex-start, flex-start);
+
+        width: calc(100% - 48px);
+        height: calc(100% - 22px);
+    }
+
+    &__avatar {
+        display: none;
+    }
+
+    &__title {
+        @include flex-setting(column, flex-start, flex-start);
+        @include font-setting($roboto-cond, toRem(21), toRem(27), 700, $white);
+        text-align: left;
+        margin-bottom: toRem(10);
+    }
+
+    &__about {
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, $white);
+    }
+
+    &__intro-list {
+        width: 100%;
+        @include flex-setting(row, space-between, center);
+        z-index: 2;
+    }
+
+    &__intro-tab {
+        width: 100%;
+        @include flex-setting(column, center, center);
+        @include font-setting($roboto-cond, toRem(12), toRem(24), 400, $eno-black);
+        max-width: 50%;
+        height: toRem(32);
+        background-color: $eno-gray;
+
+        position: relative;
+
+        &.is-active {
+            color: $white;
+            background-color: $black;
+
+            &::after {
+                position: absolute;
+                content: '';
+
+                width: 0;
+                height: 0;
+
+                border-style: solid;
+                border-width: 15px 15px 0 15px;
+                border-color: #000000 transparent transparent transparent;
+
+                left: toRem(20);
+                bottom: toRem(-4);
+            }
+        }
+    }
+
+    &__content {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+
+        margin-bottom: toRem(40);
+    }
+
+    &__block {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+        display: none;
+
+        &.is-active {
+            display: flex;
+        }
+    }
+
+    &__form {
+        width: 100%;
+
+        @include flex-setting(column, flex-start, center);
+    }
+
+    &__list {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+
+        margin-bottom: toRem(30);
+
+        gap: toRem(20);
+    }
+
+    &__item {
+        width: 100%;
+
+        @include flex-setting(column, flex-start, flex-start);
+
+        position: relative;
+    }
+
+    .emailChangedConfirm {
+        @include font-setting($roboto-cond, toRem(14), toRem(24), 400, #000);
+        text-align: left;
+
+        margin-bottom:  toRem(30);
+        margin-top: toRem(10);
+    }
+
+    &__label {
+        @include font-setting($roboto-cond, toRem(16), toRem(19), 400, $eno-black);
+        margin-bottom: toRem(4);
+        cursor: pointer;
+    }
+
+    &__input {
+        width: 100%;
+        border: toRem(2) solid $eno-lightgray;
+
+        background-color: $eno-lightgray;
+        cursor: text;
+        @include font-setting($roboto-cond, toRem(16), toRem(19), 400, $eno-black);
+
+        padding: toRem(6) toRem(8);
+
+        &.error {
+            border-color: $eno-red;
+            transition: 0.35s $cubic;
+
+            & + .cabinet__error {
+                display: flex;
+                color: $white;
+            }
+
+            & ~ .cabinet__sign {
+                background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18ZM4 10H14V8H4V10Z' fill='%23CD4447'/%3E%3C/svg%3E");
+                display: block;
+            }
+        }
+
+        &.correct {
+            & ~ .cabinet__sign {
+                display: block;
+                background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18ZM8.76822 12.6402L13.7682 6.64018L12.2318 5.35982L7.9328 10.5186L5.70711 8.29289L4.29289 9.70711L7.29289 12.7071L8.0672 13.4814L8.76822 12.6402Z' fill='%231CC05E'/%3E%3C/svg%3E%0A");
+            }
+        }
+
+        &.loginChanged {
+            & ~ .cabinet__warning {
+                display: block;
+            }
+        }
+    }
+
+    &__error {
+        position: relative;
+        @include font-setting($roboto-cond, toRem(12), toRem(14), 400, $white);
+        @include flex-setting(column, center, center);
+        text-align: center;
+        width: 100%;
+        background-color: $eno-red;
+        padding: toRem(5) 0;
+        margin-top: toRem(8);
+
+        display: none;
+
+        &::after {
+            position: absolute;
+            content: '';
+
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 4px 4px 4px;
+            border-color: transparent transparent #CD4447 transparent;
+            left: 50%;
+            top: toRem(-4);
+            transform: translateX(-50%);
+
+        }
+    }
+
+    &__warning {
+        position: relative;
+        @include font-setting($roboto-cond, toRem(12), toRem(14), 400, $eno-red);
+        @include flex-setting(column, center, center);
+        text-align: center;
+        width: 100%;
+        background-color: $eno-gray;
+        padding: toRem(5) 0;
+        margin-top: toRem(8);
+
+        display: none;
+    }
+
+    &__sign {
+        position: absolute;
+        right: toRem(8);
+        top: toRem(32);
+        display: block;
+        width: toRem(18);
+        height: toRem(18);
+        border-radius: toRem(9);
+
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        display: none;
+    }
+
+    &__controls {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+    }
+
+    &__submit,
+    &__btn {
+        width: 100%;
+        border: none;
+        @include flex-setting(column, center, center);
+        @include font-setting($roboto-font, toRem(16), toRem(24), 400, $eno-black);
+        padding: toRem(8) 0;
+
+        cursor: pointer;
+        outline: none;
+    }
+
+    &__submit {
+        background-color: #CED6D9;
+        margin-bottom: toRem(20);
+        transition: 0.2s $cubic;
+
+        &:active {
+            color: $white;
+            background-color: $eno-red;
+            transition: 0.2s $cubic;
+        }
+    }
+
+    &__btn {
+        background-color: $white;
+        transition: 0.2s $cubic;
+
+        &:active {
+            color: $eno-red;
+            transition: 0.2s $cubic;
+        }
+    }
+}
+
+@include min-screen(1366px) {
+    .cabinet {
+        --width: calc(100% - 1120px);
+        padding: 0 calc(var(--width) / 2);
+
+        &__intro {
+            margin-bottom: toRem(80);
+
+            &::before {
+                width: calc(100% + 128px);
+                height: toRem(224);
+                top: toRem(40);
+            }
+        }
+
+        &__frame {
+            max-height: toRem(264);
+        }
+
+        &__bio {
+            width: auto;
+            top: toRem(34);
+            left: toRem(32);
+            bottom: toRem(44);
+
+            display: grid;
+            grid-template-areas:
+                'logo title'
+                '... about'
+            ;
+            grid-template-rows: toRem(150) max-content;
+            grid-row-gap: toRem(24);
+            grid-column-gap: toRem(40);
+            grid-template-columns: toRem(140) toRem(340);
+            justify-content: start;
+            align-items: start;
+            height: calc(100% - 66px);
+        }
+
+        &__avatar {
+            grid-area: logo;
+            @include flex-setting(column, center, center);
+            position: relative;
+            max-width: toRem(140);
+
+            .avatar-edit {
+                position: absolute;
+                right: 0;
+                bottom: toRem(14);
+                z-index: 1;
+
+                input {
+                    display: none;
+
+                    + label {
+                        display: inline-block;
+                        width: 34px;
+                        height: 34px;
+                        border-radius: 100%;
+                        background: #FFFFFF;
+                        border: 2px solid $white;
+                        background-color: #CED6D9;
+                        cursor: pointer;
+                        transition: all .2s ease-in-out;
+
+                        &:hover {
+                            background: #f1f1f1;
+                            border-color: #d6d6d6;
+                        }
+
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            width: toRem(16);
+                            height: toRem(14);
+                            background-position: 50% 50%;
+                            background-repeat: no-repeat;
+                            background-image: url("data:image/svg+xml,%3Csvg width='16' height='14' viewBox='0 0 16 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 2C0.895431 2 0 2.89543 0 4V12C0 13.1046 0.895431 14 2 14H14C15.1046 14 16 13.1046 16 12V4C16 2.89543 15.1046 2 14 2H12.4142C12.149 2 11.8946 1.89464 11.7071 1.70711L10.5858 0.585787C10.2107 0.210714 9.70201 0 9.17157 0H6.82843C6.29799 0 5.78929 0.210713 5.41421 0.585786L4.29289 1.70711C4.10536 1.89464 3.851 2 3.58579 2H2ZM8 11C9.65685 11 11 9.65685 11 8C11 6.34315 9.65685 5 8 5C6.34315 5 5 6.34315 5 8C5 9.65685 6.34315 11 8 11Z' fill='%23303233'/%3E%3C/svg%3E%0A");
+                            background-size: toRem(16) toRem(14);
+                            top: toRem(9);
+                            left: toRem(9);
+                        }
+                    }
+                }
+            }
+
+            .avatar-preview {
+                width: toRem(140);
+                height: toRem(140);
+                position: relative;
+                border-radius: 100%;
+                border: 6px solid #fff;
+
+                & > div {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+        }
+
+        &__title {
+            grid-area: title;
+            font-size: toRem(32);
+            line-height: toRem(48);
+            margin-bottom: 0;
+            max-width: 100%;
+        }
+
+        &__about {
+            font-size: toRem(24);
+            grid-area: about;
+        }
+
+        &__intro-tab {
+            font-size: toRem(16);
+            height: toRem(40);
+            cursor: pointer;
+
+            &.is-active {
+                &::after {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        &__content {
+            margin-bottom: toRem(72);
+        }
+
+        &__form {
+            align-items: flex-start;
+        }
+
+        &__list {
+            max-width: toRem(784);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: toRem(80);
+            grid-row-gap: toRem(30);
+            margin-bottom: toRem(120);
+        }
+
+        &__item {
+            &:first-of-type {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+            &:nth-of-type(2) {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+
+            &:nth-of-type(3) {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+
+            &:nth-of-type(4) {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+            }
+
+            &:last-of-type {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+            }
+        }
+
+        .emailChangedConfirm {
+            position: absolute;
+            top: toRem(-78);
+        }
+
+        &__warning {
+            position: absolute;
+            width: auto;
+            background-color: $eno-gray;
+            padding: toRem(5) toRem(6);
+            margin-top: toRem(8);
+
+            display: none;
+
+            top: toRem(-16);
+            right: 0;
+        }
+
+        &__sign {
+            right: toRem(-32);
+        }
+
+        &__controls {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        &__submit,
+        &__btn {
+            max-width: toRem(256)
+        }
+
+        &__submit {
+            margin-bottom: 0;
+
+            &:hover,
+            &:focus {
+                color: $white;
+                background-color: $eno-red;
+                transition: 0.2s $cubic;
+            }
+        }
+
+        &__btn {
+            &:hover,
+            &:focus  {
+                color: $eno-red;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+}

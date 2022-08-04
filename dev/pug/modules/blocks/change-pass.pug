@@ -1,0 +1,25 @@
+.popup-change
+    .popup-change__wrapper
+        button(type="button").popup-change__closer
+        form(method="post" action="/" name="change-password").change.js-change-form
+            h3.change__title Смена пароля
+
+            ul.change__list
+                li.change__item.change__item--first
+                    label(for="reg-email").change__label Введите старый пароль
+                    input(type="password" name="old-pass" id="old-pass").change__input
+                    span.change__error.change__error--oldpass
+                    button(type="button").change__eye
+                li.change__item.change__item--second
+                    label(for="new-pass").change__label Новый пароль
+                    input(type="password" name="change-pass" id="change-pass").change__input
+                    span.change__error.change__error--pass
+                    button(type="button").change__eye
+                li.change__item.change__item--second
+                    label(for="rep-pass").change__label Повторите пароль
+                    input(type="password" name="change-pass-repeat" id="change-pass-repeat").change__input
+                    span.change__error.change__error--check
+                    button(type="button").change__eye
+            a(href="restore.html" target="_self").change__restore.form__restore Я забыл пароль
+            
+            button(type="submit").change__btn.js-change-password Обновить пароль

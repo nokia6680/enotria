@@ -1,0 +1,40 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+    body.body
+        // Тестовая кнопка
+        button(type="button").course__opener Записаться на курс
+        include ../modules/header/header
+        main.main
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        block script

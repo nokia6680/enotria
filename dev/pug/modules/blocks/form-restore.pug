@@ -1,0 +1,13 @@
+.popup-restore
+    .popup-restore__wrapper
+        button(type="button").popup-restore__closer
+        form(method="post" action="/" name="restore-password").restore.js-restore-form.step-1
+            h3.restore__title Восстановление пароля
+            p.restore__description Введите адрес электронной почты, на которую вы регистрировали профиль, и мы отправим вам инструкцию по восстановлению
+            p.restore__description Инструкция по восстановлению пароля отправлена на указанный адрес электронной почты
+            ul.restore__list
+                li.restore__item
+                    label(for="reg-email").restore__label E-mail
+                    input(type="email" name="reg-email" id="reg-email").restore__input
+                    span.restore__error.restore__error--mail
+            button(type="submit").restore__btn.js-reset-password Сбросить пароль

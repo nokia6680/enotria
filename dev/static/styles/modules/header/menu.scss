@@ -1,0 +1,182 @@
+.popup-menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    @include flex-setting(column, center, center);
+
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: none;
+
+    &.active {
+        display: flex;
+
+        .popup-menu__wrapper {
+            animation: fadeIn 0.5s $cubic forwards;
+        }
+    }
+
+    &__wrapper {
+        overflow-y: auto;
+        position: relative;
+        @include flex-setting(column, flex-start, center);
+        width: calc(100% - 16px);
+        max-width: toRem(448);
+        height: calc(100% - 16px);
+        opacity: 0;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__closer {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: toRem(50);
+        height: toRem(50);
+        background-color: transparent;
+
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0.212891L0.213379 0L30 29.7871V0H0.213379H0V0.212891Z' fill='%23CD4447'/%3E%3C/svg%3E");
+        background-size: contain;
+
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .menu {
+        width: 100%;
+
+        @include flex-setting(column, flex-start, center);
+
+        background-color: #303233;
+        padding: toRem(32) toRem(16);
+        border-bottom: toRem(16) solid $eno-red;
+
+        &__head {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: toRem(48);
+            justify-content: center;
+            align-items: end;
+
+            margin-bottom: toRem(30);
+        }
+
+        &__btn {
+            position: relative;
+
+            @include flex-setting(column, flex-end, flex-start);
+            @include font-setting($roboto-cond, toRem(18), toRem(24), 400, #CED6D9);
+
+            background-color: transparent;
+            border: none;
+
+            padding: 0;
+            padding-top: toRem(60);
+
+            &.js-login-btn {
+                &::before {
+                    position: absolute;
+                    content: '';
+
+                    width: toRem(48);
+                    height: toRem(48);
+
+                    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.8817 0C10.7094 0 0 10.7094 0 23.8817C0 37.0539 10.7094 47.7633 23.8817 47.7633C37.0539 47.7633 47.7633 37.0539 47.7633 23.8817C47.7633 10.7094 37.0539 0 23.8817 0ZM36.8953 36.1583C28.7419 32.0723 18.8814 31.9044 10.5322 35.7758C7.70556 32.6134 5.97974 28.4527 5.97974 23.8817C5.97974 14.0025 14.0118 5.97041 23.891 5.97041C33.7701 5.97041 41.8022 14.0025 41.8022 23.8817C41.7929 28.63 39.9178 32.9492 36.8953 36.1583Z' fill='%23CED6D9'/%3E%3Cpath d='M30.2158 14.5622C33.7141 18.0605 33.7141 23.7324 30.2158 27.2307C26.7175 30.729 21.0456 30.729 17.5473 27.2307C14.049 23.7324 14.049 18.0605 17.5473 14.5622C21.0456 11.0639 26.7175 11.0639 30.2158 14.5622Z' fill='%23CED6D9'/%3E%3C/svg%3E%0A");
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+
+                    top: 0;
+                    left: 0;
+                }
+
+                &.active {
+                    color: $eno-red;
+
+                    &::before {
+                        background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.8817 0C10.7094 0 0 10.7094 0 23.8817C0 37.0539 10.7094 47.7633 23.8817 47.7633C37.0539 47.7633 47.7633 37.0539 47.7633 23.8817C47.7633 10.7094 37.0539 0 23.8817 0ZM36.8953 36.1583C28.7419 32.0723 18.8814 31.9044 10.5322 35.7758C7.70556 32.6134 5.97974 28.4527 5.97974 23.8817C5.97974 14.0025 14.0118 5.97041 23.891 5.97041C33.7701 5.97041 41.8022 14.0025 41.8022 23.8817C41.7929 28.63 39.9178 32.9492 36.8953 36.1583Z' fill='%23CD4447'/%3E%3Cpath d='M30.2158 14.5622C33.7141 18.0605 33.7141 23.7324 30.2158 27.2307C26.7175 30.729 21.0456 30.729 17.5473 27.2307C14.049 23.7324 14.049 18.0605 17.5473 14.5622C21.0456 11.0639 26.7175 11.0639 30.2158 14.5622Z' fill='%23CD4447'/%3E%3C/svg%3E%0A");
+                    }
+                }
+            }
+
+            &.js-reg-btn {
+                &::before {
+                    position: absolute;
+                    content: '';
+
+                    width: toRem(66);
+                    height: toRem(48);
+
+                    background-image: url("data:image/svg+xml,%3Csvg width='66' height='48' viewBox='0 0 66 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.8817 0C10.7094 0 0 10.7094 0 23.8817C0 37.0539 10.7094 47.7633 23.8817 47.7633C37.0539 47.7633 47.7633 37.0539 47.7633 23.8817C47.7633 10.7094 37.0539 0 23.8817 0ZM36.886 36.1583C28.7326 32.0723 18.8721 31.9044 10.5229 35.7758C7.69623 32.6134 5.97041 28.4527 5.97041 23.8817C5.97041 14.0025 14.0025 5.97041 23.8817 5.97041C33.7608 5.97041 41.7929 14.0025 41.7929 23.8817C41.7929 28.63 39.9178 32.9492 36.886 36.1583Z' fill='%23CED6D9'/%3E%3Cpath d='M56.8101 0.00927734C51.8401 0.00927734 47.8101 4.05009 47.8101 9.00927C47.8101 13.9685 51.8509 18.0093 56.8101 18.0093C61.7692 18.0093 65.8101 13.9685 65.8101 9.00927C65.8101 4.05009 61.7692 0.00927734 56.8101 0.00927734ZM61.3047 10.1437H57.9229V13.5255H55.6756V10.1437H52.2938V7.89643H55.6756V4.51468H57.9229V7.89643H61.3047V10.1437Z' fill='%23CED6D9'/%3E%3Cpath d='M30.2158 14.5622C33.7141 18.0605 33.7141 23.7324 30.2158 27.2307C26.7175 30.729 21.0456 30.729 17.5473 27.2307C14.049 23.7324 14.049 18.0605 17.5473 14.5622C21.0456 11.0639 26.7175 11.0639 30.2158 14.5622Z' fill='%23CED6D9'/%3E%3C/svg%3E%0A");
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+
+                    top: 0;
+                    left: 0;
+                }
+
+                &.active {
+                    color: $eno-red;
+
+                    &::before {
+                        background-image: url("data:image/svg+xml,%3Csvg width='66' height='48' viewBox='0 0 66 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.8817 0C10.7094 0 0 10.7094 0 23.8817C0 37.0539 10.7094 47.7633 23.8817 47.7633C37.0539 47.7633 47.7633 37.0539 47.7633 23.8817C47.7633 10.7094 37.0539 0 23.8817 0ZM36.886 36.1583C28.7326 32.0723 18.8721 31.9044 10.5229 35.7758C7.69623 32.6134 5.97041 28.4527 5.97041 23.8817C5.97041 14.0025 14.0025 5.97041 23.8817 5.97041C33.7608 5.97041 41.7929 14.0025 41.7929 23.8817C41.7929 28.63 39.9178 32.9492 36.886 36.1583Z' fill='%23CD4447'/%3E%3Cpath d='M56.8101 0.00927734C51.8401 0.00927734 47.8101 4.05009 47.8101 9.00927C47.8101 13.9685 51.8509 18.0093 56.8101 18.0093C61.7692 18.0093 65.8101 13.9685 65.8101 9.00927C65.8101 4.05009 61.7692 0.00927734 56.8101 0.00927734ZM61.3047 10.1437H57.9229V13.5255H55.6756V10.1437H52.2938V7.89643H55.6756V4.51468H57.9229V7.89643H61.3047V10.1437Z' fill='%23CD4447'/%3E%3Cpath d='M30.2158 14.5622C33.7141 18.0605 33.7141 23.7324 30.2158 27.2307C26.7175 30.729 21.0456 30.729 17.5473 27.2307C14.049 23.7324 14.049 18.0605 17.5473 14.5622C21.0456 11.0639 26.7175 11.0639 30.2158 14.5622Z' fill='%23CD4447'/%3E%3C/svg%3E%0A");
+                    }
+                }
+            }
+        }
+
+        &__body {
+            width: 100%;
+            @include flex-setting(column, flex-start, center);
+        }
+    }
+}
+
+@include min-screen(1366px) {
+    .popup-menu {
+        justify-content: flex-start;
+
+        &__wrapper {
+            width: 100%;
+            max-width: toRem(448);
+            height: auto;
+        }
+
+        &__closer {
+            width: toRem(60);
+            height: toRem(60);
+        }
+
+        .menu {
+            padding-left: toRem(32);
+            padding-right: toRem(64);
+
+            &__head {
+                grid-column-gap: toRem(90);
+            }
+
+            &__btn {
+                font-size: toRem(24);
+                cursor: pointer;
+                outline: none;
+            }
+        }
+    }
+}

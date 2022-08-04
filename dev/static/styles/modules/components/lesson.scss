@@ -1,0 +1,303 @@
+.lesson {
+    width: 100%;
+
+    @include flex-setting(column, flex-start, center);
+
+    padding: toRem(10) 0;
+    gap: toRem(50);
+
+    &__item {
+        width: 100%;
+        display: grid;
+        grid-template-areas:
+            'info frame'
+            'details details'
+            'controls controls'
+        ;
+
+        grid-template-columns: 55.1470588235294% 44.85294117647059%;
+        grid-template-rows: minmax(10px, min-content);
+        grid-row-gap: toRem(20);
+        align-items: stretch;
+        height: 100%;
+
+        &[data-status="notPurchased"] {
+            .lesson__status-complete {
+                display: none;
+            }
+        }
+
+        &[data-status="purchased"] {
+            .lesson__status-name {
+                display: none;
+            }
+
+            .lesson__status-nr {
+                display: none;
+            }
+
+            .lesson__status-complete {
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+
+            .lesson__controls-btn.js-continue {
+                display: none;
+            }
+        }
+
+        &[data-type="soldOut"] {
+            .lesson__status {
+                background-color: #CD4447;
+            }
+
+            .lesson__controls-btn.js-continue {
+                display: none;
+            }
+        }
+    }
+
+    &__info {
+        grid-area: info;
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+
+        background-color: #000;
+    }
+
+    &__time {
+        @include font-setting($roboto-cond, toRem(14), toRem(24), 700, #fff);
+        width: 100%;
+        margin: toRem(8) 0 toRem(8) toRem(10);
+        max-width: toRem(120);
+        text-align: left;
+    }
+
+    &__status {
+        width: 100%;
+        height: 100%;
+        margin-top: auto;
+        margin-bottom: 0;
+        @include flex-setting(row, flex-start, center);
+        background-color: #1CC05E;
+        padding: toRem(10) toRem(20) toRem(10) toRem(10);
+
+        &-name {
+            @include font-setting($roboto-cond, toRem(12), toRem(16), 700, #fff);
+            text-align: left;
+            max-width: toRem(64);
+            margin-right: toRem(8);
+        }
+
+        &-nr {
+            @include font-setting($roboto-cond, toRem(24), toRem(28), 700, #fff);
+            position: relative;
+
+            sup {
+                position: absolute;
+                top: toRem(2);
+                font-size: toRem(12);
+                line-height: toRem(16);
+                font-weight: 400;
+            }
+        }
+
+        &-complete {
+            @include font-setting($roboto-cond, toRem(12), toRem(16), 700, #fff);
+        }
+    }
+
+    &__frame {
+        grid-area: frame;
+        width: 100%;
+        height: 0;
+        padding-bottom: 98.36065573770492%;
+        position: relative;
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            object-fit: cover;
+        }
+    }
+
+    &__details {
+        grid-area: details;
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+    }
+
+    &__title {
+        @include font-setting($roboto-cond, toRem(18), toRem(32), 700, #000);
+        text-align: left;
+        margin-bottom: toRem(10);
+    }
+
+    &__description {
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, #303233);
+        text-align: left;
+        margin-bottom: toRem(20);
+    }
+
+    &__price {
+        @include font-setting($roboto-cond, toRem(18), toRem(24), 700, #303233);
+        text-align: left;
+    }
+
+    &__controls {
+        grid-area: controls;
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+        gap: toRem(10);
+
+        &-btn {
+            width: 100%;
+            @include flex-setting(column, center, center);
+            @include font-setting($roboto-cond, toRem(16), toRem(24), 500, #000);
+
+            text-decoration: none;
+            padding: toRem(11) 0;
+            border: none;
+            background-color: #CED6D9;
+
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s $cubic;
+
+            &:active {
+                background-color: $white;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+                transition: 0.3s $cubic;
+            }
+
+            &.js-continue {
+                background-color: #BF4E4C;
+                color: $white;
+
+                &:active {
+                    background-color: $white;
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+                    transition: 0.3s $cubic;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+@include min-screen(1366px) {
+    .lesson {
+        padding: 0;
+        gap: toRem(60);
+
+        &__item {
+            grid-template-areas:
+                'info frame details'
+                'info frame details'
+                'info frame controls'
+            ;
+
+            grid-template-columns: 16.07142857142857% 33.03571428571429% 48.21428571428571%;
+            grid-row-gap: toRem(0);
+        }
+
+        &__info {
+            padding: toRem(30) toRem(20) toRem(30) toRem(30);
+        }
+
+        &__time {
+            font-size: toRem(16);
+            line-height: toRem(24);
+            margin: 0;
+        }
+
+        &__status {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: toRem(12) toRem(16);
+            height: auto;
+            width: auto;
+
+            &-name {
+                margin-right: 0;
+                margin-bottom: toRem(6);
+            }
+
+            &-nr {
+                font-size: toRem(40);
+                line-height: toRem(48);
+
+                sup {
+                    top: toRem(8);
+                }
+            }
+
+            &-complete {
+                font-size: toRem(16);
+                line-height: toRem(24);
+                font-weight: 400;
+            }
+        }
+
+        &__frame {
+            padding-bottom: 102.7027027027027%;
+        }
+
+        &__details {
+            margin-left: toRem(20);
+        }
+
+        &__title {
+            font-size: toRem(24);
+            line-height: toRem(32);
+            margin-bottom: toRem(20);
+        }
+
+        &__description {
+            font-size: toRem(16);
+            line-height: toRem(24);
+            margin-bottom: toRem(40);
+        }
+
+        &__price {
+            font-size: toRem(24);
+            line-height: toRem(24);
+        }
+
+        &__controls {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: toRem(30);
+            margin-left: toRem(20);
+
+            &-btn {
+                width: auto;
+                padding: toRem(11) toRem(32);
+
+                &:hover {
+                    background-color: $white;
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+                    transition: 0.3s $cubic;
+                }
+
+                &.js-continue {
+                    &:hover {
+                        background-color: $white;
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+                        transition: 0.3s $cubic;
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}

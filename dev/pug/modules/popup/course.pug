@@ -1,0 +1,15 @@
+.course
+    .course__wrapper.--noLogged
+        button(type="button").course__closer
+        
+        picture.course__frame.course__frame--noLogged
+            source(srcset="static/images/content/course.webp" type="image/webp")
+            img(src="static/images/content/course.jpg" width="" height="" alt="Запись на курс").course__frame-image
+        picture.course__frame.course__frame--logged
+            source(srcset="static/images/content/success.webp" type="image/webp")
+            img(src="static/images/content/success.jpg" width="" height="" alt="Вы записаны на курс").course__frame-image
+        p.course__title.course__title--noLogged Запись на курс доступна только для зарегистрированных пользователей
+        p.course__title.course__title--logged Теперь в Вашем личном кабинете есть возможность оформить договор и оплатить обучение за выбранный вами курс
+        
+        button(type="button").course__btn.js-form-opener Вход / регистрация
+        a(href="cabinet.html" target="_self").course__link Перейти в личный кабинет

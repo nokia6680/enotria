@@ -1,0 +1,19 @@
+mixin lessonItem(dates, placeNr, totalNr, price, type, status, image, name, description, lessonLink)
+    li(data-type="" +type data-status="" +status).lesson__item
+        .lesson__info
+            span.lesson__time=dates
+            .lesson__status
+                span.lesson__status-name Свободных мест
+                b.lesson__status-nr=placeNr
+                    sup.lesson__status-total=totalNr
+                span.lesson__status-complete Приобретен
+        picture.lesson__frame
+            source(srcset="static/images/content/" +image +'.webp' type="image/webp")
+            img(src="static/images/content/" +image +'.jpg' width="" height="" alt="").lesson__frame-image
+        .lesson__details
+            h2.lesson__title=name
+            p.lesson__description=description
+            b.lesson__price=price
+        .lesson__controls
+            a(href="" +lessonLink target="_self").lesson__controls-btn Открыть курс
+            a(href="" +lessonLink target="_self").lesson__controls-btn.js-continue Продолжить оформление

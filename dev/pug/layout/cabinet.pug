@@ -1,0 +1,102 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+    body.body
+        // Тестовая кнопка
+        button(type="button").course__opener Записаться на курс
+        include ../modules/header/header
+        main.main
+            section.cabinet
+                .cabinet__intro
+                    picture.cabinet__frame
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.webp" type="image/webp")
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.jpg")
+                        source(srcset="static/images/content/cab-intro.webp" type="image/webp")
+                        img(src="static/images/content/cab-intro.jpg" width="" height="" alt="").cabinet__frame-image
+                    .cabinet__bio
+                        .cabinet__avatar.avatar-upload
+                            .avatar-edit
+                                input(type='file' id="imageUpload" accept=".png, .jpg, .jpeg")
+                                label(for="imageUpload").avatar-label
+                            .avatar-preview
+                                .avatar-image(id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);")
+                        h1.cabinet__title 
+                            span.cabinet__title--name Константин
+                            span.cabinet__title--suname Фамильев
+                            span.cabinet__title--famname Отчествович
+                        b.cabinet__about Студент
+                    ul.cabinet__intro-list
+                        li(data-tab-name="cabinet-1").cabinet__intro-tab.is-active  Профиль
+                        li(data-tab-name="cabinet-2").cabinet__intro-tab Мои курсы
+                .cabinet__content
+                    .cabinet__block.cabinet-1.is-active
+                        form(action="" method="post" name="cabinet-form").cabinet__form
+                            ul.cabinet__list
+                                li.cabinet__item
+                                    label(for="name").cabinet__label Имя*
+                                    input(type="text" id="name" name="name" onkeydown="validationName()").cabinet__input.cabinet__input--text.error
+                                    span.cabinet__error.cabinet__error--name Извините, но это поле обязательно к заполнению
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="surname").cabinet__label Фамилия*
+                                    input(type="text" id="surname" name="surname" onkeydown="validationSurname()").cabinet__input.cabinet__input--text.correct
+                                    span.cabinet__error.cabinet__error--surname
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="patronymic").cabinet__label Отчество
+                                    input(type="text" id="patronymic" name="patronymic" onkeydown="validationPatr()").cabinet__input.cabinet__input--text
+                                    span.cabinet__error.cabinet__error--patronymic
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    span.cabinet__verify.emailChangedConfirm Необходимо подтвердить изменение email с какой-то почты на какую-то почту, перейдя по ссылке из письма
+                                    label(for="email-reg").cabinet__label E-mail*
+                                    input(type="email" id="email-reg" name="email-reg" onkeydown="validationMail()").cabinet__input.loginChanged
+                                    span.cabinet__error.cabinet__error--mreg
+                                    span.cabinet__sign
+                                    span.cabinet__warning Обратите внимание, что изменится ваш логин
+                                li.cabinet__item
+                                    label(for="tel-reg").cabinet__label Телефон*
+                                    input(type="tel" id="tel-reg" name="tel-reg" onkeydown="validationTel()").cabinet__input.mask-phone
+                                    span.cabinet__error.cabinet__error--tel
+                                    span.cabinet__sign
+                            .cabinet__controls
+                                button(type="submit").cabinet__submit Применить изменения
+                                button(type="button").cabinet__btn.js-change-opener Сменить пароль
+                    .cabinet__block.cabinet-2
+                        ul.cabinet__lesson.lesson
+                            +lessonItem('Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+                            +lessonItem('Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'purchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+                            +lessonItem('Сентябрь декабрь 2022 года', '0', '/72', '250 000₽', 'soldOut', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        block script
