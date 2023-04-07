@@ -1,19 +1,122 @@
-mixin lessonItem(dates, placeNr, totalNr, price, type, status, image, name, description, lessonLink)
-    li(data-type="" +type data-status="" +status).lesson__item
-        .lesson__info
-            span.lesson__time=dates
-            .lesson__status
+- var docsData = [{dataType: 'pptx', dataDescription: 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине.', dataLink: '#'}, {dataType: 'video', dataDescription: 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине.', dataLink: '#'}, {dataType: 'pic', dataDescription: 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине.', dataLink: '#'}, {dataType: 'pdf', dataDescription: 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине.', dataLink: '#'}, {dataType: 'doc', dataDescription: 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине.', dataLink: '#'}]
+
+mixin lessonItem(cls, dates, placeNr, totalNr, price, type, status, image, name, description, lessonLink)
+    li(data-type="" +type data-status="" +status class="" +cls +"__item")
+        div(class="" +cls +"__info")
+            span(class="" +cls +"__time")=dates
+            div(class="" +cls +"__status")
                 span.lesson__status-name Свободных мест
-                b.lesson__status-nr=placeNr
-                    sup.lesson__status-total=totalNr
-                span.lesson__status-complete Приобретен
-        picture.lesson__frame
+                b(class="" +cls +"__status-nr")=placeNr
+                    sup(class="" +cls +"__status-total")=totalNr
+                span(class="" +cls +"__status-complete") Приобретен
+        picture(class="" +cls +"__frame")
             source(srcset="static/images/content/" +image +'.webp' type="image/webp")
-            img(src="static/images/content/" +image +'.jpg' width="" height="" alt="").lesson__frame-image
-        .lesson__details
-            h2.lesson__title=name
-            p.lesson__description=description
-            b.lesson__price=price
-        .lesson__controls
-            a(href="" +lessonLink target="_self").lesson__controls-btn Открыть курс
-            a(href="" +lessonLink target="_self").lesson__controls-btn.js-continue Продолжить оформление
+            img(src="static/images/content/" +image +'.jpg' width="" height="" alt="" class="" +cls +"__frame-image")
+        div(class="" +cls +"__details")
+            h2(class="" +cls +"__title")=name
+            p(class="" +cls +"__description")=description
+            div(class="" +cls +"__details-bottom")
+                b(class="" +cls +"__price")=price
+                button(type="button" class="" +cls +"__delete") Удалить курс
+        div(class="" +cls +"__controls")
+            a(href="" +lessonLink target="_self" class="" +cls +"__controls-btn") Открыть курс
+            a(href="" +lessonLink target="_self" class="" +cls +"__controls-btn").js-continue Продолжить оформление
+
+mixin materialItem(dataMatNr, image, name, description)
+    li.materials__item
+        .materials__info
+            .materials__docs
+                span.materials__docs-name Доступно материалов
+                b.materials__docs-nr=dataMatNr
+        picture.materials__frame
+            source(srcset="static/images/content/" +image +'.webp' type="image/webp")
+            img(src="static/images/content/" +image +'.jpg' width="" height="" alt="").materials__frame-image
+        .materials__details
+            h2.materials__title=name
+            p.materials__description=description
+        button(type="button").materials__expand.js-materials-expand Открыть материалы курса
+        .materials__inner
+            ul.materials__inner-list
+                each line in docsData
+                    li(data-type="" +line.dataType).materials__inner-item
+                        span.materials__inner-icon
+                        p.materials__inner-description=line.dataDescription
+                        a(href="" +line.dataLink target="_self").materials__inner-download
+            button(type="button" class="").materials__inner-expand Показать ещё
+
+mixin testItem(type, link, nr, name, quantity, status)
+    a(data-type="" +type href="" +link target="_self").test__list-item
+        b.test__list-nr=nr
+        h3.test__list-name=name
+        b.test__list-quantity=quantity
+        span.test__list-status=status
+        
+        
+mixin testF(curNr, totNr, question)
+    li.questionnaire__item
+        .questionnaire__head
+            b.questionnaire__nr
+                span.questionnaire__nr-cur=curNr
+                span  / 
+                span.questionnaire__nr-tot=totNr
+            p.questionnaire__description=question
+                
+        .questionnaire__wrap
+            .questionnaire__line
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-1" value="answer-" +curNr +"-1").questionnaire__radio
+                label(for="question-" +curNr +"-1").questionnaire__label Ответ 1
+            .questionnaire__line
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-2" value="answer-" +curNr +"-2").questionnaire__radio
+                label(for="question-" +curNr +"-2").questionnaire__label Ответ 2
+            .questionnaire__line
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-3" value="answer-" +curNr +"-3").questionnaire__radio
+                label(for="question-" +curNr +"-3").questionnaire__label Ответ 3
+            .questionnaire__line
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-4" value="answer-" +curNr +"-4").questionnaire__radio
+                label(for="question-" +curNr +"-4").questionnaire__label Ответ 4
+mixin testQ(curNr, totNr, question)
+    li.questionnaire__item
+        .questionnaire__head
+            b.questionnaire__nr
+                span.questionnaire__nr-cur=curNr
+                span  / 
+                span.questionnaire__nr-tot=totNr
+            p.questionnaire__description=question
+        
+        .questionnaire__wrap
+            label(for="textarea-input-" +curNr).questionnaire__label Ваш ответ:
+            textarea(name="textarea-input-" +curNr id="textarea-input-" +curNr).questionnaire__textarea
+mixin testImage(curNr, totNr, question)
+    li.questionnaire__item
+        .questionnaire__head
+            b.questionnaire__nr
+                span.questionnaire__nr-cur=curNr
+                span  / 
+                span.questionnaire__nr-tot=totNr
+            p.questionnaire__description=question
+                            
+        .questionnaire__wrap.questionnaire__wrap--hor
+            .questionnaire__line
+                picture.questionnaire__frame
+                    source(srcset="static/images/content/question-1.webp" type="image/webp")
+                    img(src="static/images/content/question-1.jpg" width="" height="" alt="").questionnaire__frame-img
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-1" value="answer-" +curNr +"-1").questionnaire__radio
+                label(for="question-" +curNr +"-1").questionnaire__label Ответ 1
+            .questionnaire__line
+                picture.questionnaire__frame
+                    source(srcset="static/images/content/question-1.webp" type="image/webp")
+                    img(src="static/images/content/question-1.jpg" width="" height="" alt="").questionnaire__frame-img
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-2" value="answer-" +curNr +"-2").questionnaire__radio
+                label(for="question-" +curNr +"-2").questionnaire__label Ответ 2
+            .questionnaire__line
+                picture.questionnaire__frame
+                    source(srcset="static/images/content/question-1.webp" type="image/webp")
+                    img(src="static/images/content/question-1.jpg" width="" height="" alt="").questionnaire__frame-img
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-3" value="answer-" +curNr +"-3").questionnaire__radio
+                label(for="question-" +curNr +"-3").questionnaire__label Ответ 3
+            .questionnaire__line
+                picture.questionnaire__frame
+                    source(srcset="static/images/content/question-1.webp" type="image/webp")
+                    img(src="static/images/content/question-1.jpg" width="" height="" alt="").questionnaire__frame-img
+                input(type="radio" name="question-" +curNr id="question-" +curNr +"-4" value="answer-" +curNr +"-4").questionnaire__radio
+                label(for="question-" +curNr +"-4").questionnaire__label Ответ 4

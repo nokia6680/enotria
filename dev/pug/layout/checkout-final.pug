@@ -1,0 +1,101 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+    body.body
+        // Тестовая кнопка
+        button(type="button").course__opener Записаться на курс
+        include ../modules/header/header
+        main.main
+            section.cabinet.cabinet--payment
+                .cabinet__intro
+                    picture.cabinet__frame
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.webp" type="image/webp")
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.jpg")
+                        source(srcset="static/images/content/cab-intro.webp" type="image/webp")
+                        img(src="static/images/content/cab-intro.jpg" width="" height="" alt="").cabinet__frame-image
+                    .cabinet__bio
+                        h1.cabinet__title Оформление заявки на получение договора
+                        b.cabinet__about Оформите заявку
+                .cabinet__content
+                    h2.cabinet__subtitle Курс: №1 Основной курс профессионального обучения
+                    p.cabinet__description Данный пакет документов нужно распечатать, подписать и принести на первую встречу (первое занятие)
+                    
+                    ul.cabinet__docs
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--file
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Анкета
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--file
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Договор
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--file
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Расписка о вреде здоровью
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--download
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Разрешение на фотосъёмку
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--file
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Согласие на обработку персональных данных
+                        li.cabinet__docs-item
+                            a(href="#" target="_self").cabinet__docs-link.cabinet__docs-link--download
+                                span.cabinet__docs-icon
+                                span.cabinet__docs-name Весь пакет документов
+                    .cabinet__pay
+                        h3.cabinet__pay-title Выберите способ оплаты
+                        ul.cabinet__pay-list
+                            li.cabinet__pay-item
+                                input(type="radio" name="checkout-payment" id="payment-full" value="payment-full" checked).cabinet__radio
+                                label(for="payment-full").cabinet__label Полная оплата
+                                
+                            li.cabinet__pay-item
+                                input(type="radio" name="checkout-payment" id="payment-part" value="payment-part").cabinet__radio
+                                label(for="payment-part").cabinet__label Предоплата
+                        .cabinet__prepay
+                            b.cabinet__prepay-name Выберите сумму предоплаты
+                            select.select.cabinet__prepay-select
+                                option(value="hide") Сумма предоплаты
+                                option(value="70000") 70 000 руб.
+                                option(value="150000") 150 000 руб.
+                                option(value="200000") 200 000 руб.
+                    .cabinet__controls
+                        a(href="payment.html" target="_self").cabinet__submit Оплатить
+                        a(href="checkout.html" target="_self").cabinet__return Вернуться
+
+                            
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        block script

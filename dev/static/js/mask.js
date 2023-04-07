@@ -1,6 +1,6 @@
 "use strict";
 
-var input = document.getElementById("tel-reg");
+var input = document.getElementById("payment-tel");
 
 var prefixNumber = function prefixNumber(str) {
     if (str === "7") {

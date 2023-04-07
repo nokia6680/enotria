@@ -1,0 +1,128 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+    body.body
+        // Тестовая кнопка
+        button(type="button").course__opener Записаться на курс
+        include ../modules/header/header
+        main.main
+            section.cabinet.cabinet--checkout
+                .cabinet__intro
+                    picture.cabinet__frame
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.webp" type="image/webp")
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.jpg")
+                        source(srcset="static/images/content/cab-intro.webp" type="image/webp")
+                        img(src="static/images/content/cab-intro.jpg" width="" height="" alt="").cabinet__frame-image
+                    .cabinet__bio
+                        h1.cabinet__title Оформление заявки на получение договора
+                        b.cabinet__about Оформите заявку
+                .cabinet__content
+                    h2.cabinet__subtitle Курс: №1 Основной курс профессионального обучения
+                    .cabinet__block.cabinet__block--checkout
+                        form(action="" method="post" name="checkout-form").cabinet__form
+                            ul.cabinet__list.cabinet__list--checkout
+                                li.cabinet__item
+                                    label(for="checkout-name").cabinet__label Имя*
+                                    input(type="text" id="checkout-name" name="name" onkeydown="validationName()").cabinet__input.cabinet__input--text
+                                    span.cabinet__error.cabinet__error--name Извините, но это поле обязательно к заполнению
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-surname").cabinet__label Фамилия*
+                                    input(type="text" id="checkout-surname" name="surname" onkeydown="validationSurname()").cabinet__input.cabinet__input--text.correct
+                                    span.cabinet__error.cabinet__error--surname
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-patronymic").cabinet__label Отчество
+                                    input(type="text" id="checkout-patronymic" name="patronymic" onkeydown="validationPatr()").cabinet__input.cabinet__input--text
+                                    span.cabinet__error.cabinet__error--patronymic
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-email-reg").cabinet__label E-mail*
+                                    input(type="email" id="checkout-email-reg" name="email-reg" onkeydown="validationMail()").cabinet__input.loginChanged
+                                    span.cabinet__error.cabinet__error--mreg
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-tel-reg").cabinet__label Телефон*
+                                    input(type="tel" id="checkout-tel-reg" name="tel-reg" onkeydown="validationTel()").cabinet__input.mask-phone
+                                    span.cabinet__error.cabinet__error--tel
+                                    span.cabinet__sign                                    
+                            ul.cabinet__list.cabinet__list--controls
+                                li.cabinet__item
+                                    input(type="checkbox" name="checkout-agree" id="checkout-agree" required checked).cabinet__checkbox
+                                    label(for="checkout-agree").cabinet__label Я подтверждаю корректность введенных&nbsp;мной данных
+                                
+                                li.cabinet__item
+                                    input(type="radio" name="checkout-person" id="checkout-self" value="checkout-self" checked).cabinet__radio
+                                    label(for="checkout-self").cabinet__label Покупаю для себя
+                                    
+                                li.cabinet__item
+                                    input(type="radio" name="checkout-person" id="checkout-other" value="checkout-other").cabinet__radio
+                                    label(for="checkout-other").cabinet__label Покупаю для другого
+                            // Список форма для регистрации другому человеку
+                            ul.cabinet__list.cabinet__list--otherPerson
+                                li.cabinet__item
+                                    label(for="checkout-name-other").cabinet__label Имя*
+                                    input(type="text" id="checkout-name-other" name="name" onkeydown="validationName()").cabinet__input.cabinet__input--text.error
+                                    span.cabinet__error.cabinet__error--name Извините, но это поле обязательно к заполнению
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-surname-other").cabinet__label Фамилия*
+                                    input(type="text" id="checkout-surname-other" name="surname" onkeydown="validationSurname()").cabinet__input.cabinet__input--text.correct
+                                    span.cabinet__error.cabinet__error--surname
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-patronymic-other").cabinet__label Отчество
+                                    input(type="text" id="checkout-patronymic-other" name="patronymic" onkeydown="validationPatr()").cabinet__input.cabinet__input--text
+                                    span.cabinet__error.cabinet__error--patronymic
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-email-reg-other").cabinet__label E-mail*
+                                    input(type="email" id="checkout-email-reg-other" name="email-reg" onkeydown="validationMail()").cabinet__input.loginChanged
+                                    span.cabinet__error.cabinet__error--mreg
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    label(for="checkout-tel-reg-other").cabinet__label Телефон*
+                                    input(type="tel" id="checkout-tel-reg-other" name="tel-reg" onkeydown="validationTel()").cabinet__input.mask-phone
+                                    span.cabinet__error.cabinet__error--tel
+                                    span.cabinet__sign
+                                li.cabinet__item
+                                    input(type="checkbox" name="checkout-agree-other" id="checkout-agree-other" required checked).cabinet__checkbox
+                                    label(for="checkout-agree-other").cabinet__label Я подтверждаю корректность введенных&nbsp;мной данных
+                            
+                            .cabinet__controls
+                                button(type="submit").cabinet__submit Продолжить
+                                a(href="coursepage.html" target="_self").cabinet__return Вернуться
+
+                            
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        block script

@@ -1,0 +1,348 @@
+.questionnaire {
+    width: 100%;
+    @include flex-setting(column, flex-start, flex-start);
+
+    padding: 0 toRem(24);
+
+    &__subtitle {
+        @include font-setting($roboto-cond, toRem(18), toRem(32), 700, $black);
+        text-align: left;
+        margin-bottom: toRem(30);
+    }
+
+    &__list {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+        gap: toRem(20);
+        margin-bottom: toRem(40);
+    }
+
+    &__item {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+    }
+
+    &__head {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+
+        padding: toRem(20) toRem(10);
+        margin-bottom: toRem(10);
+        background-color: #EDF1F2;
+    }
+
+    &__nr {
+        @include flex-setting(row, flex-start, center);
+        @include font-setting($roboto-cond, toRem(32), 1, 700, #9DA3A6);
+        margin-bottom: toRem(20);
+
+        &-cur {
+            margin-right: toRem(4);
+        }
+        &-tot {
+            margin-top: toRem(-8);
+            margin-left: toRem(4);
+            font-size: toRem(20);
+            font-weight: 400;
+        }
+    }
+
+    &__description {
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, $black);
+        text-align: left;
+    }
+
+    &__wrap {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+
+        &--hor {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            scroll-snap-type: x mandatory;
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .questionnaire__line {
+                margin-right: toRem(20);
+                scroll-snap-align: center;
+            }
+        }
+    }
+
+    &__line {
+        position: relative;
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+        margin-bottom: toRem(20);
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__frame {
+        @include flex-setting(column, flex-start, center);
+
+        width: toRem(200);
+        height: toRem(200);
+        margin-bottom: toRem(10);
+        overflow: hidden;
+
+        &-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__radio {
+        display: none;
+    }
+
+    &__radio + label {
+        position: relative;
+        padding-left: toRem(36);
+    }
+
+    &__radio + label::before {
+        position: absolute;
+        content: '';
+
+        width: toRem(24);
+        height: toRem(24);
+
+        background-color: $white;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%23CED6D9'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        border: toRem(1) solid #CED6D9;
+        border-radius: toRem(12);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__radio:checked + label::after {
+        position: absolute;
+        content: '';
+
+        width: toRem(24);
+        height: toRem(24);
+
+        background-color: $white;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%23000000'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        border: toRem(1) solid $black;
+        border-radius: toRem(12);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__radio.valid + label::after {
+        position: absolute;
+        content: '';
+
+        width: toRem(24);
+        height: toRem(24);
+
+        background-color: $white;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%231CC05E'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        border: toRem(1) solid #1CC05E;
+        border-radius: toRem(12);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__radio.invalid + label::after {
+        position: absolute;
+        content: '';
+
+        width: toRem(24);
+        height: toRem(24);
+
+        background-color: $white;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%239B0034'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        border: toRem(1) solid #9B0034;
+        border-radius: toRem(12);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__label {
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, $black);
+        text-align: left;
+        margin-bottom: toRem(10);
+        cursor: pointer;
+    }
+
+    &__textarea {
+        width: 100%;
+        min-height: toRem(88);
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, $black);
+        border: 1px solid #303233;
+        border-radius: 0;
+        outline: none;
+        cursor: text;
+        padding: toRem(10) toRem(10);
+        resize: vertical;
+    }
+
+    &__expand {
+        align-self: center;
+        position: relative;
+        @include flex-setting(column, center, center);
+        @include font-setting($roboto-cond, toRem(16), toRem(24), 400, $black);
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        padding-right: toRem(36);
+        margin-bottom: toRem(40);
+        cursor: pointer;
+
+        &::after {
+            position: absolute;
+            content: '';
+
+            width: toRem(18);
+            height: toRem(10);
+
+            background-position: 50% 50%;
+            background-image: url("data:image/svg+xml,%3Csvg width='17' height='10' viewBox='0 0 17 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 8.5L8.5 1.5L16 8.5' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+
+    &__controls {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+    }
+
+    &__return {
+        order: 2;
+        position: relative;
+        width: auto;
+
+        @include font-setting($roboto-font, toRem(16), toRem(24), 400, $black);
+        text-decoration: none;
+        padding-left: toRem(45);
+
+        &::before {
+            position: absolute;
+            content: '';
+
+            width: toRem(20);
+            height: toRem(10);
+
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url("data:image/svg+xml,%3Csvg width='21' height='8' viewBox='0 0 21 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.146447 3.64645C-0.0488155 3.84171 -0.0488155 4.15829 0.146447 4.35355L3.32843 7.53553C3.52369 7.7308 3.84027 7.7308 4.03553 7.53553C4.2308 7.34027 4.2308 7.02369 4.03553 6.82843L1.20711 4L4.03553 1.17157C4.2308 0.976311 4.2308 0.659728 4.03553 0.464466C3.84027 0.269204 3.52369 0.269204 3.32843 0.464466L0.146447 3.64645ZM0.5 4.5H20.5V3.5H0.5V4.5Z' fill='black'/%3E%3C/svg%3E%0A");
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__submit {
+        width: 100%;
+        max-width: toRem(272);
+
+        @include flex-setting(column, center, center);
+        @include font-setting($roboto-font, toRem(16), toRem(24), 400, $black);
+        padding: toRem(8) 0;
+        margin-bottom: toRem(20);
+        border: none;
+        background-color: #CED6D9;
+        cursor: pointer;
+        outline: none;
+    }
+}
+
+@include min-screen(1366px) {
+    .questionnaire {
+        padding: 0;
+
+        &__subtitle {
+            font-size: toRem(24);
+            line-height: toRem(32);
+            margin-bottom: toRem(50);
+        }
+
+        &__list {
+            gap: toRem(40);
+            margin-bottom: toRem(60);
+        }
+
+        &__head {
+            display: grid;
+            grid-template-columns: toRem(81) 1fr;
+            padding: toRem(20) toRem(15);
+            justify-content: start;
+            align-items: center;
+            margin-bottom: toRem(26);
+        }
+
+        &__nr {
+            margin-bottom: 0;
+        }
+
+        &__description {
+            max-width: toRem(520);
+        }
+
+        &__wrap {
+            padding-left: toRem(96);
+        }
+
+        &__line {
+            width: 100%;
+        }
+
+        &__expand {
+            margin-bottom: toRem(80);
+        }
+
+        &__controls {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        &__return {
+            order: 1;
+            margin-right: toRem(80);
+        }
+
+        &__submit {
+            order: 2;
+            max-width: toRem(300);
+            margin-bottom: 0;
+        }
+    }
+}

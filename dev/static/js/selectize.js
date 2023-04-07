@@ -1,0 +1,3 @@
+$('#citySelect').selectize({
+    preload: true,
+});

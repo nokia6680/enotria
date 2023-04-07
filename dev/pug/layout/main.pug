@@ -19,6 +19,7 @@ html(lang="ru-RU")
         //test ver only
         meta(name="robots" content="noindex")
         //end of test ver only
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ==" crossorigin="anonymous" referrerpolicy="no-referrer")
     body.body
         // Тестовая кнопка
         button(type="button").course__opener Записаться на курс
@@ -30,6 +31,8 @@ html(lang="ru-RU")
         include ../modules/popup/course
         include ../modules/blocks/form-new-password
         script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/libs.js")
+        script(src="static/js/selectize.js")
         script(src="static/js/eno.js")
         script(src="static/js/main.js")
         script(src="static/js/select.js")

@@ -19,7 +19,6 @@
         grid-template-rows: minmax(10px, min-content);
         grid-row-gap: toRem(20);
         align-items: stretch;
-        height: 100%;
 
         &[data-status="notPurchased"] {
             .lesson__status-complete {
@@ -146,9 +145,23 @@
         margin-bottom: toRem(20);
     }
 
+    &__details-bottom {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+    }
+
     &__price {
         @include font-setting($roboto-cond, toRem(18), toRem(24), 700, #303233);
         text-align: left;
+        margin-bottom: toRem(20);
+    }
+
+    &__delete {
+        @include font-setting($roboto-cond, toRem(14), toRem(16), 14, #000);
+        text-decoration: underline;
+        background-color: transparent;
+        border: none;
+        padding: 0;
     }
 
     &__controls {
@@ -253,6 +266,7 @@
 
         &__details {
             margin-left: toRem(20);
+            position: relative;
         }
 
         &__title {
@@ -268,8 +282,22 @@
         }
 
         &__price {
+            display: inline-flex;
+            height: toRem(24);
             font-size: toRem(24);
             line-height: toRem(24);
+            margin-bottom: 0;
+            margin-right: toRem(100);
+        }
+
+        &__details-bottom {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        &__delete {
+
         }
 
         &__controls {
@@ -278,6 +306,7 @@
             align-items: flex-start;
             gap: toRem(30);
             margin-left: toRem(20);
+            height: toRem(46);
 
             &-btn {
                 width: auto;

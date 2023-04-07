@@ -1,0 +1,321 @@
+.payment {
+    width: 100%;
+
+    @include flex-setting(column, flex-start, center);
+    --width: calc(100% - 310px);
+    padding: toRem(40) calc(var(--width) / 2);
+
+    &__title {
+        @include font-setting($roboto-cond, toRem(21), toRem(24), 700, #000);
+        text-align: center;
+
+        margin-bottom: toRem(30);
+    }
+
+    &__form {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+    }
+
+    &__list {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+
+        margin-bottom: toRem(40);
+    }
+
+    &__item {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+        margin-bottom: toRem(20);
+
+        position: relative;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .select-hidden {
+            display: none;
+            visibility: hidden;
+        }
+
+        .select {
+            cursor: pointer;
+            position: relative;
+            @include flex-setting(column, center, center);
+            @include font-setting($roboto-cond, 17px, 24px, 400, #9B9A9A);
+            width: 100%;
+            transition: 0.35s linear;
+            height: 40px;
+            background-color: #fff;
+            padding-left: 15px;
+            border: 1px solid #9B9A9A;
+
+            &::after {
+                position: absolute;
+                content: '';
+
+                width: 70px;
+                height: 38px;
+
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .select-styled {
+            @include flex-setting(row, flex-start, center);
+            position: absolute;
+            padding-left: 15px;
+            width: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            transition: 0.35s linear;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &::after {
+                position: absolute;
+                content: '';
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: 14px 11px;
+                background-image: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.240043 1.15546L6.53647 9.83582C6.76504 10.1501 7.2329 10.1501 7.45969 9.83582L13.7579 1.15546C13.7734 1.13411 13.7827 1.10889 13.7847 1.08259C13.7868 1.05628 13.7815 1.02993 13.7695 1.00645C13.7574 0.982961 13.7392 0.963264 13.7166 0.949537C13.6941 0.93581 13.6682 0.928589 13.6418 0.928676L12.3025 0.928676C12.2115 0.928676 12.1258 0.973318 12.0722 1.04653L6.99897 8.03939L1.92576 1.04653C1.87219 0.973317 1.78647 0.928675 1.6954 0.928675L0.356115 0.928674C0.240044 0.928674 0.172186 1.06082 0.240043 1.15546V1.15546Z' fill='%239B9A9A'/%3E%3C/svg%3E");
+                width: 14px;
+                height: 11px;
+                background-color: transparent;
+                top: 14px;
+                right: 14px;
+                transition: 0.15s linear;
+
+                z-index: 99;
+            }
+
+            &.active,
+            &:active {
+                &::after {
+                    transform: rotate(180deg);
+                    transition: 0.15s linear;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .select-options {
+            width: calc(100% + 2px);
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: -1px;
+            z-index: 999;
+            margin: 0;
+            padding: 10px 30px 10px 10px;
+            list-style: none;
+            background-color: #F9F9F9;
+
+            max-height: toRem(160);
+            overflow-y: auto;
+
+            li {
+                @include flex-setting(row, flex-start, center);
+                font-size: 14px;
+                line-height: 16px;
+                font-weight: 300;
+                font-family: $roboto-cond;
+                color: #303233;
+                margin-bottom: toRem(5);
+                border-bottom: 1px solid #C4C4C4;
+                padding: toRem(5) 0;
+                transition: all 0.15s ease-in;
+
+                &:last-of-type {
+                    border-bottom: none;
+                }
+
+                a {
+                    color: $black;
+                    text-decoration: none;
+                }
+
+                &[rel="hide"] {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__note {
+        @include font-setting($roboto-cond, toRem(14), toRem(24), 400, #BABABA);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    &__label {
+        @include font-setting($roboto-cond, toRem(15), toRem(24), 400, #9B9A9A);
+    }
+
+    &__input {
+        width: 100%;
+        @include font-setting($roboto-cond, toRem(17), toRem(24), 400, #000);
+
+        padding: toRem(8) toRem(10);
+        background-color: transparent;
+
+        border: 1px solid #9B9A9A;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+    &__error {
+        @include font-setting($roboto-cond, toRem(12), toRem(24), 300, #CE4447);
+        display: none;
+    }
+
+    &__textarea {
+        width: 100%;
+
+        @include font-setting($roboto-cond, toRem(17), toRem(24), 400, #000);
+
+        padding: toRem(8) toRem(10);
+        background-color: transparent;
+
+        border: 1px solid #9B9A9A;
+        resize: none;
+        cursor: text;
+        outline: none;
+        min-height: toRem(160);
+    }
+
+    &__submit {
+        width: 100%;
+        @include flex-setting(column, center, center);
+        @include font-setting($roboto-cond, toRem(17), toRem(24), 700, #fff);
+
+        padding: toRem(12) 0;
+        border: none;
+        background-color: #CE4447;
+
+        margin-bottom: toRem(15);
+
+        cursor: pointer;
+        outline: none;
+
+        transition: 0.3s $cubic;
+
+        &:active {
+            background-color: #8A3336;
+            transition: 0.3s $cubic;
+        }
+    }
+
+    &__agreement {
+        @include font-setting($roboto-cond, toRem(14), toRem(24), 400, #000);
+        text-align: left;
+
+        a {
+            color: #000;
+        }
+    }
+}
+
+@include min-screen(1366px) {
+    .payment {
+        align-items: flex-start;
+        --width: calc(100% - 1120px);
+        padding: toRem(50) calc(var(--width) / 2);
+
+        &__title {
+            font-size: toRem(48);
+            line-height: toRem(48);
+            margin-bottom: toRem(50);
+        }
+
+        &__form {
+            max-width: toRem(840);
+            align-items: flex-start;
+        }
+
+        &__list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: toRem(40);
+            grid-row-gap: toRem(25);
+            margin-bottom: toRem(50);
+        }
+
+        &__item {
+            margin-bottom: 0;
+
+            .select {
+                font-size: toRem(20);
+                height: 50px;
+                padding-left: 12px;
+
+                &::after {
+                    height: 48px;
+                }
+            }
+
+            .select-styled {
+                padding-left: 12px;
+
+                &::after {
+                    background-size: 16px 12px;
+                    width: 16px;
+                    height: 12px;
+                    top: 20px;
+                    right: 14px;
+                }
+            }
+
+            .select-options {
+                top: 70px;
+            }
+        }
+
+        &__label {
+            font-size: toRem(18);
+            margin-bottom: toRem(5);
+        }
+
+        &__input {
+            font-size: toRem(20);
+            padding: toRem(12) toRem(10);
+        }
+
+        &__error {
+            font-size: toRem(15);
+        }
+
+        &__textarea {
+            font-size: toRem(20);
+            padding: toRem(12) toRem(10);
+            min-height: toRem(170);
+        }
+
+        &__submit {
+            max-width: toRem(400);
+
+            &:active,
+            &:hover {
+                background-color: #8A3336;
+                transition: 0.3s $cubic;
+            }
+        }
+
+        &__agreement {
+            max-width: toRem(400);
+        }
+    }
+}

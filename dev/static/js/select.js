@@ -9,7 +9,8 @@ $('.select').each(function(){
     $styledSelect.text($this.children('option').eq(0).text());
 
     var $list = $('<ul />', {
-        'class': 'select-options'
+        'class': 'select-options',
+        'id' : 'scrollbar-custom'
     }).insertAfter($styledSelect);
 
     for (var i = 0; i < numberOfOptions; i++) {
@@ -42,5 +43,4 @@ $('.select').each(function(){
         $styledSelect.removeClass('active');
         $list.hide();
     });
-
 });

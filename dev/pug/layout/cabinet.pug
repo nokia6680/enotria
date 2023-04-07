@@ -44,10 +44,12 @@ html(lang="ru-RU")
                             span.cabinet__title--famname Отчествович
                         b.cabinet__about Студент
                     ul.cabinet__intro-list
-                        li(data-tab-name="cabinet-1").cabinet__intro-tab.is-active  Профиль
+                        li(data-tab-name="cabinet-1").cabinet__intro-tab Профиль
                         li(data-tab-name="cabinet-2").cabinet__intro-tab Мои курсы
+                        li(data-tab-name="cabinet-3").cabinet__intro-tab Доступные материалы
+                        li(data-tab-name="cabinet-4").cabinet__intro-tab.is-active Тестирование
                 .cabinet__content
-                    .cabinet__block.cabinet-1.is-active
+                    .cabinet__block.cabinet-1
                         form(action="" method="post" name="cabinet-form").cabinet__form
                             ul.cabinet__list
                                 li.cabinet__item
@@ -82,10 +84,32 @@ html(lang="ru-RU")
                                 button(type="button").cabinet__btn.js-change-opener Сменить пароль
                     .cabinet__block.cabinet-2
                         ul.cabinet__lesson.lesson
-                            +lessonItem('Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
-                            +lessonItem('Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'purchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
-                            +lessonItem('Сентябрь декабрь 2022 года', '0', '/72', '250 000₽', 'soldOut', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
-
+                            +lessonItem('lesson', 'Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+                            +lessonItem('lesson', 'Сентябрь декабрь 2022 года', '48', '/72', '250 000₽', '', 'purchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+                            +lessonItem('lesson', 'Сентябрь декабрь 2022 года', '0', '/72', '250 000₽', 'soldOut', 'notPurchased', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.', '#')
+                    .cabinet__block.cabinet-3
+                        ul.cabinet__materials.materials
+                            +materialItem('25', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.')
+                            +materialItem('25', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.')
+                            +materialItem('25', 'course-1', '№1 Основной курс профессионального обучения', 'Лицензированный курс профессиональной подготовки для специалистов (сомелье, кавист, менеджер виноторговой компании), а также, для ценителей культуры вина.')
+                    .cabinet__block.cabinet-4.is-active
+                        .test
+                            ul.test__nav
+                                li(test-tab-name="test-personal").test__nav-item.is-active Вопросы для самопроверки
+                                li(test-tab-name="test-full").test__nav-item Пробное тестирование
+                            .test__content
+                                .test__block.test-personal.is-active
+                                    .test__list
+                                        +testItem('passed', 'test-personal.html', 'Тест №1', 'Основной курс профессионального обучения', '48 вопросов', 'Пройден')
+                                        +testItem('pending', 'test-personal.html', 'Тест №1', 'Основной курс профессионального обучения', '48 вопросов', 'В процессе')
+                                        +testItem('new', 'test-personal.html', 'Тест №1', 'Основной курс профессионального обучения', '48 вопросов', 'Новый')
+                                    button(type="button").test__expand Показать ещё
+                                .test__block.test-full
+                                    .test__list
+                                        +testItem('passed', 'test-full.html', 'Тест №2', 'Основной курс профессионального обучения', '48 вопросов', 'Пройден')
+                                        +testItem('pending', 'test-full.html', 'Тест №2', 'Основной курс профессионального обучения', '48 вопросов', 'В процессе')
+                                        +testItem('new', 'test-full.html', 'Тест №2', 'Основной курс профессионального обучения', '48 вопросов', 'Новый')
+                                    button(type="button").test__expand Показать ещё
             include ../modules/blocks/change-pass
         include ../modules/popup/form
         include ../modules/blocks/form-restore
@@ -99,4 +123,5 @@ html(lang="ru-RU")
         script(src="static/js/image.js")
         script(src="static/js/mask.js")
         script(src="static/js/validate.js")
+        script(src="static/js/materials.js")
         block script

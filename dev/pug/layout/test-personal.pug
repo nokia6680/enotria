@@ -1,0 +1,69 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+    body.body
+        // Тестовая кнопка
+        button(type="button").course__opener Записаться на курс
+        include ../modules/header/header
+        main.main
+            section.cabinet
+                .cabinet__intro.cabinet__intro--test
+                    picture.cabinet__frame
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.webp" type="image/webp")
+                        source(media="(min-width: 1366px)" srcset="static/images/content/cab-intro-1366.jpg")
+                        source(srcset="static/images/content/cab-intro.webp" type="image/webp")
+                        img(src="static/images/content/cab-intro.jpg" width="" height="" alt="").cabinet__frame-image
+                    .cabinet__bio
+                        .cabinet__avatar.avatar-upload
+                            .avatar-edit
+                                input(type='file' id="imageUpload" accept=".png, .jpg, .jpeg")
+                                label(for="imageUpload").avatar-label
+                            .avatar-preview
+                                .avatar-image(id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);")
+                        h1.cabinet__title Вопросы для самопроверки
+                        b.cabinet__about Пройдите, пожалуйста, тест
+                .cabinet__content
+                    form(method="" action="").cabinet__form.questionnaire
+                        h2.questionnaire__subtitle Тест №1 Основной курс профессионального обучения
+                        ul.questionnaire__list
+                            +testQ('1', '3', 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине?')
+                            +testQ('2', '3', 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине?')
+                            +testQ('3', '3', 'Встреча новых студентов. Что есть Вино. Факторы, определяющие качество вина. Вино и климат. Терруар. Искусство винодела. Авторство в вине?')
+                        button(type="button").questionnaire__expand Показать ещё
+                        .questionnaire__controls
+                            a(href="enotria-cabinet.hmtl" target="_self").questionnaire__return Вернуться
+                            button(type="submit").questionnaire__submit Сдать тест
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        script(src="static/js/materials.js")
+        script(src="static/js/textarea.js")
+        block script

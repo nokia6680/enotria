@@ -9,25 +9,7 @@ window.addEventListener('resize', function () {
   // We execute the same script as before
   var vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
-}); // var upperItem2 = document.getElementsByClassName('js-vacant');
-// var elNodes = document.querySelectorAll(".js-vacant");
-// var applyForm = document.querySelector('.apply-popup');
-// var applyCloser = document.querySelector('.apply-popup__closer');
-//
-// for (var i = 0; i < upperItem2.length; i++) {
-//     var elem = upperItem2[i];
-//     elem.addEventListener("click", function() {
-//         event.preventDefault();
-//         applyForm.classList.add('active');
-//     });
-// }
-//
-// if (applyCloser) {
-//     applyCloser.addEventListener('click', function() {
-//         event.preventDefault();
-//         applyForm.classList.remove('active');
-//     });
-// };
+});
 
 var cabPopupOpener = document.querySelector('.js-cabinet-opener');
 var cabPopup = document.querySelector('.header__popup');

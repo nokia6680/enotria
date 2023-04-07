@@ -1,13 +1,12 @@
 @mixin box($width,$height: $width) {
-  width: $width;
-  height: $height;
+    width: $width;
+    height: $height;
 }
 @mixin cover-background {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
-
 @mixin gapFallback($gap) {
     @supports not (aspect-ratio: 1 / 1) {
         margin-right: $gap;
@@ -18,94 +17,136 @@
     }
 }
 @mixin font-setting($family, $size, $line-height, $font-width, $color) {
-  font-family: $family;
-  font-size: $size;
-  line-height: $line-height;
-  font-weight: $font-width;
-  color: $color;
+    font-family: $family;
+    font-size: $size;
+    line-height: $line-height;
+    font-weight: $font-width;
+    color: $color;
 }
-
 $units: 1px !default;
 @mixin screen($res-first, $res-last: $res-first) {
-  @if $res-first == $res-last {
-    @media screen and (max-width: if(unitless($res-first), ($res-first - 1) *$units, $res-first)) {
-      @content;
+    @if $res-first == $res-last {
+        @media screen and (max-width: if(unitless($res-first), ($res-first - 1) *$units, $res-first)) {
+            @content;
+        }
+    } @else
+    if $res-first < $res-last {
+        @media screen and (min-width: if(unitless($res-first), $res-first*$units, $res-first)) and (max-width: if(unitless($res-last), $res-last*$units, $res-last)) {
+            @content;
+        }
     }
-  }
-  @else if $res-first < $res-last {
-    @media screen and (min-width: if(unitless($res-first), $res-first*$units, $res-first)) and (max-width: if(unitless($res-last), $res-last*$units, $res-last)) {
-      @content;
-    }
-  }
 }
 @mixin min-screen($res) {
-  @media screen and (min-width: if(unitless($res), $res*$units, $res)) {
-    @content;
-  }
+    @media screen and (min-width: if(unitless($res), $res*$units, $res)) {
+        @content;
+    }
 }
-
 @mixin pseudo($pos: absolute, $content: '') {
-  @include flex-setting(column, center, center);
-
-  content: $content;
-  position: $pos;
+    @include flex-setting(column, center, center);
+    content: $content;
+    position: $pos;
 }
-
 @mixin flex-setting($direction, $justify, $align) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
 }
-
 @mixin ul-nostyle {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-
 @mixin checkbox-default {
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-
-  position: relative;
-
-  padding-left: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    padding-left: toRem(34);
 }
-
 @mixin custom-checkbox {
-  position: absolute;
-  content: "";
-  display: block;
+    position: absolute;
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 1H3C1.89543 1 1 1.89543 1 3V19C1 20.1046 1.89543 21 3 21H19C20.1046 21 21 20.1046 21 19V3C21 1.89543 20.1046 1 19 1Z' stroke='%23CED6D9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='bevel'/%3E%3C/svg%3E");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: toRem(6);
+    left: 0;
 
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  background-color: $olive;
-  box-shadow: inset 0px 0px 8px rgba(96, 0, 43, 0.15);
+    @include min-screen(1366px) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+@mixin checkbox-checked {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 1H3C1.89543 1 1 1.89543 1 3V19C1 20.1046 1.89543 21 3 21H19C20.1046 21 21 20.1046 21 19V3C21 1.89543 20.1046 1 19 1Z' fill='%23CE4447' stroke='%23CE4447' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='bevel'/%3E%3Cpath d='M5.56055 11.8501L8.62055 14.9101L16.4405 7.09009' stroke='%23FDFDFD' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: toRem(6);
+    left: 0;
 
-  top: 0.125rem;
-  left: 0;
+    @include min-screen(1366px) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
-@mixin checkbox-checked {
-  position: absolute;
-  content: "";
-  display: block;
+@mixin radio-default {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    padding-left: toRem(34);
+}
 
-  width: 16px;
-  height: 16px;
+@mixin radio-custom {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    border: 1px solid #CED6D9;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%23CED6D9'/%3E%3C/svg%3E");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    top: toRem(-4);
+    left: 0;
 
-  border-radius: 4px;
-  background-color: $olive;
-  box-shadow: inset 0px 0px 8px rgba(96, 0, 43, 0.15);
+    @include min-screen(1366px) {
+        top: 49%;
+        transform: translateY(-50%);
+    }
+}
 
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='M0 0h60v60H0z' fill='%2360002B'/%3E%3C/svg%3E");
-  background-size: 10px 10px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+@mixin radio-checked {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    border: 1px solid #CE4447;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='6' fill='%23CE4447'/%3E%3C/svg%3E");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    top: toRem(-4);
+    left: 0;
 
-  top: 0.125rem;
-  left: 0;
+    @include min-screen(1366px) {
+        top: 49%;
+        transform: translateY(-50%);
+    }
 }

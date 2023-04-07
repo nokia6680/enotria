@@ -3,12 +3,14 @@
 header.header
     .header__upper
         .header__city
-            select.select
+            select.header__select#citySelect
+                option(value="msk") Москва
                 option(value="msk") Москва
                 option(value="spb") Санкт-Петербург
         .header__controls
             button(type="button").header__btn Оформить заявку
             button(type="button").header__login.js-cabinet-opener.logged
+                span Личный кабинет
             
         .header__popup
             button(type="button").header__popup-closer

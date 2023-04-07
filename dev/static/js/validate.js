@@ -1,9 +1,9 @@
 "use strict";
 
 function validationTel() {
-  var tel = document.getElementById('tel-reg').value;
-  var telInput = document.getElementById('tel-reg');
-  var textTel = document.querySelector('.form__error--tel, .cabinet__error--tel');
+  var tel = document.getElementById('payment-tel').value;
+  var telInput = document.getElementById('payment-tel');
+  var textTel = document.querySelector('.payment__error--tel, .cabinet__error--tel');
   var patternTel = /^((\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\-]{7,10}$/;
 
   if (tel.match(patternTel)) {
@@ -80,68 +80,68 @@ function validationMailEnter() {
   }
 }
 
-function validationName() {
-  var name = document.getElementById('name').value;
-  var nameInput = document.getElementById('name');
-  var textName = document.querySelector('.form__error--name, .cabinet__error--name');
-  var pattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
-
-  if (name.match(pattern)) {
-    nameInput.classList.remove('error');
-    nameInput.classList.add('correct');
-  } else {
-    nameInput.classList.add('error');
-    nameInput.classList.remove('correct');
-    textName.innerHTML = "Допускается использование только кириллицы";
-  }
-
-  if (name == '') {
-    nameInput.classList.remove('error');
-    nameInput.classList.remove('correct');
-    textName.innerHTML = "";
-  }
-}
-
-function validationSurname() {
-  var surname = document.getElementById('surname').value;
-  var surnameInput = document.getElementById('surname');
-  var textSur = document.querySelector('.form__error--surname, .cabinet__error--surname');
-  var pattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
-
-  if (surname.match(pattern)) {
-    surnameInput.classList.remove('error');
-    surnameInput.classList.add('correct');
-  } else {
-    surnameInput.classList.add('error');
-    surnameInput.classList.remove('correct');
-    textSur.innerHTML = "Допускается использование только кириллицы";
-  }
-
-  if (surname == '') {
-    surnameInput.classList.remove('error');
-    surnameInput.classList.remove('correct');
-    textSur.innerHTML = "";
-  }
-}
-
-function validationPatr() {
-  var patr = document.getElementById('patronymic').value;
-  var patrInput = document.getElementById('patronymic');
-  var textPatr = document.querySelector('.form__error--patronymic, .cabinet__error--patronymic');
-  var pattern = /^[а-яА-ЯёЁa-zA-Z]$/;
-
-  if (patr.match(pattern)) {
-    patrInput.classList.remove('error');
-    patrInput.classList.add('correct');
-  } else {
-    patrInput.classList.remove('correct');
-    patrInput.classList.add('error');
-    textPatr.innerHTML = "Допускается использование только кириллицы";
-  }
-
-  if (patr == '') {
-    patrInput.classList.remove('error');
-    patrInput.classList.remove('correct');
-    textPatr.innerHTML = "";
-  }
-}
+// function validationName() {
+//   var name = document.getElementById('name').value;
+//   var nameInput = document.getElementById('name');
+//   var textName = document.querySelector('.form__error--name, .cabinet__error--name');
+//   var pattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
+//
+//   if (name.match(pattern)) {
+//     nameInput.classList.remove('error');
+//     nameInput.classList.add('correct');
+//   } else {
+//     nameInput.classList.add('error');
+//     nameInput.classList.remove('correct');
+//     textName.innerHTML = "Допускается использование только кириллицы";
+//   }
+//
+//   if (name == '') {
+//     nameInput.classList.remove('error');
+//     nameInput.classList.remove('correct');
+//     textName.innerHTML = "";
+//   }
+// }
+//
+// function validationSurname() {
+//   var surname = document.getElementById('surname').value;
+//   var surnameInput = document.getElementById('surname');
+//   var textSur = document.querySelector('.form__error--surname, .cabinet__error--surname');
+//   var pattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
+//
+//   if (surname.match(pattern)) {
+//     surnameInput.classList.remove('error');
+//     surnameInput.classList.add('correct');
+//   } else {
+//     surnameInput.classList.add('error');
+//     surnameInput.classList.remove('correct');
+//     textSur.innerHTML = "Допускается использование только кириллицы";
+//   }
+//
+//   if (surname == '') {
+//     surnameInput.classList.remove('error');
+//     surnameInput.classList.remove('correct');
+//     textSur.innerHTML = "";
+//   }
+// }
+//
+// function validationPatr() {
+//   var patr = document.getElementById('patronymic').value;
+//   var patrInput = document.getElementById('patronymic');
+//   var textPatr = document.querySelector('.form__error--patronymic, .cabinet__error--patronymic');
+//   var pattern = /^[а-яА-ЯёЁa-zA-Z]$/;
+//
+//   if (patr.match(pattern)) {
+//     patrInput.classList.remove('error');
+//     patrInput.classList.add('correct');
+//   } else {
+//     patrInput.classList.remove('correct');
+//     patrInput.classList.add('error');
+//     textPatr.innerHTML = "Допускается использование только кириллицы";
+//   }
+//
+//   if (patr == '') {
+//     patrInput.classList.remove('error');
+//     patrInput.classList.remove('correct');
+//     textPatr.innerHTML = "";
+//   }
+// }

@@ -1,0 +1,84 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        meta(name="keywords" content="")
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet")
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@5.3.8/dist/simplebar.css")
+        script(src="https://cdn.jsdelivr.net/npm/simplebar@5.3.8/dist/simplebar.min.js")
+    body.body
+        include ../modules/header/header
+        main.main
+            section.payment
+                h1.payment__title Введите данные оплаты
+                
+                form(action="" method="").payment__form
+                    ul.payment__list
+                        li.payment__item
+                            label(for="payment-name").payment__label Имя*
+                            input(id="payment-name" type="text" name="name" required).payment__input
+                            span.payment__error
+                        li.payment__item
+                            label(for="payment-surname").payment__label Фамилия*
+                            input(id="payment-surname" type="text" name="surname" required).payment__input
+                            span.payment__error
+                        li.payment__item
+                            span.payment__note По указанному адресу мы вышлем чек
+                            label(for="payment-email").payment__label Email*
+                            input(id="payment-email" type="email" name="email" required).payment__input
+                            span.payment__error
+                        li.payment__item
+                            label(for="payment-tel").payment__label Телефон*
+                            input(id="payment-tel" type="tel" name="tel" required).payment__input.phone-input
+                            span.payment__error
+                        li.payment__item
+                            label(for="payment-selectP").payment__label Курс*
+                            select#payment-selectP.select.payment__select
+                                option(value="hide") Выберите курс
+                                option(value="course-1") №2а Дистанционный курс обучения для профессионалов и любителей
+                                option(value="course-2") №1 Программа профессионального обучения по специальности сомелье/кавист
+                                option(value="course-4") №2а Дистанционный курс обучения для профессионалов и любителей
+                                option(value="course-5") №1 Программа профессионального обучения по специальности сомелье/кавист
+                                option(value="course-5") №2а Дистанционный курс обучения для профессионалов и любителей
+                                option(value="course-6") №1 Программа профессионального обучения по специальности сомелье/кавист
+                        li.payment__item
+                            label(for="payment-sum").payment__label Сумма оплаты, руб.*
+                            input(id="payment-sum" type="number" name="sum" required).payment__input
+                            span.payment__error
+                        li.payment__item
+                            label(for="payment-comment").payment__label Комментарий
+                            textarea(id="payment-comment" name="textarea-comment").payment__textarea
+                    button(type="submit").payment__submit Оплатить
+                    p.payment__agreement Нажимая кнопку, Вы соглашаетесь с 
+                        a(href="#" terget="_blank") правилами
+                        |  обработки персональных данных.
+            include ../modules/blocks/change-pass
+        include ../modules/popup/form
+        include ../modules/blocks/form-restore
+        include ../modules/popup/course
+        include ../modules/blocks/form-new-password
+        script(src="static/js/vendor/jquery-3.3.1.min.js")
+        script(src="static/js/eno.js")
+        script(src="static/js/main.js")
+        script(src="static/js/select.js")
+        script(src="static/js/cabinet.js")
+        script(src="static/js/image.js")
+        script(src="static/js/mask.js")
+        script(src="static/js/validate.js")
+        script(src="static/js/scrollbar.js")
+        block script
